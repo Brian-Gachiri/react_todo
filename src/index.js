@@ -1,17 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Header from "./components/Header";
+import AddTodo from "./components/AddTodo";
+import TodoList from "./components/TodoList";
+
+function Welcome (){
+
+    const [todos, setTodos] = useState([])
+
+    function updateTodos(todo){
+        setTodos([
+            ...todos,
+            todo
+        ])
+    }
+
+    return (
+            <>
+                <Header/>
+                <h1 className={'text-center mt-4 fw-bold heading'}>Manage Your Tasks Like A Pro!</h1>
+                <AddTodo updateList={updateTodos} totalTodos={todos.length}/>
+                <TodoList todos={todos}/>
+            </>
+        );
+}
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+root.render(<Welcome />)
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
