@@ -1,27 +1,15 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Header from "./components/Header";
-import AddTodo from "./components/AddTodo";
-import TodoList from "./components/TodoList";
+import { Provider } from 'react-redux'
+import store from './store/index'
+import Home from "./pages/Home";
 
-function Welcome (){
-
-    const [todos, setTodos] = useState([])
-
-    function updateTodos(todo){
-        setTodos([
-            ...todos,
-            todo
-        ])
-    }
+function App (){
 
     return (
             <>
-                <Header/>
-                <h1 className={'text-center mt-4 fw-bold heading'}>Manage Your Tasks Like A Pro!</h1>
-                <AddTodo updateList={updateTodos} totalTodos={todos.length}/>
-                <TodoList todos={todos}/>
+                <Home/>
             </>
         );
 }
@@ -29,5 +17,9 @@ function Welcome (){
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Welcome />)
+root.render(
+    <Provider store={store}>
+        <App />
+    </Provider>
+)
 

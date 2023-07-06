@@ -4,7 +4,7 @@ export default function Header(){
     return (
         <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#">To Do</a>
+                <a className="navbar-brand" href="/">To Do</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +13,7 @@ export default function Header(){
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a className="btn btn-danger" aria-current="page" href="#">Home</a>
+                            <a className="btn btn-danger" aria-current="page" href="/">Home</a>
                         </li>
                     </ul>
                 </div>

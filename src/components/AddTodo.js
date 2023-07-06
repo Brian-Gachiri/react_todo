@@ -1,20 +1,30 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
+import {useDispatch} from "react-redux";
+import {addTask} from "../store/todoSlice";
 
 export default function AddTodo(props){
 
     // const [text, setText] = useState("")
     const inputRef = useRef(null)
+    const dispatch = useDispatch()
     const handleClick = () => {
         const text = inputRef.current.value
         if (text === ""){
             alert("Please enter a valid todo")
         }else{
             const currentDate = new Date().toLocaleDateString()
-            props.updateList({
-                id:props.totalTodos + 1,
-                text: text,
-                date: currentDate
-            })
+            dispatch(addTask(
+                {
+                    text: text,
+                    date: currentDate
+                }
+            ))
+            //Using props and useState
+            // props.updateList({
+            //     id:props.totalTodos + 1,
+            //     text: text,
+            //     date: currentDate
+            // })
             inputRef.current.value = ""
         }
     }
