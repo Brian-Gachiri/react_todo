@@ -12,7 +12,8 @@ export const todoSlice = createSlice({
                 id: new_id,
                 text: action.payload.text,
                 date: action.payload.date,
-                complete: false
+                status: false,
+                priority: action.payload.priority,
             }
             state.todoList =
                 [
