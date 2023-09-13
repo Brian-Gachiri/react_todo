@@ -1,16 +1,7 @@
-.card{
-    padding: 10px;
-    background-color: maroon;
-    text-align: center;
-    margin: 5px;
-    border-radius: 5px;
-    color: white;
-}
-
 body{
     background: #fff8f8;
 }
 
 .heading{
-    font-size: 60px;
+    font-size: 40px;
 }
