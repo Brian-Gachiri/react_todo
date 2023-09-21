@@ -5,3 +5,10 @@ export const PRIORITY = {
     high: 1,
     low: 2
 }
+
+export const ALERT = {
+    success : 'success',
+    danger : 'danger',
+    warning : 'warning',
+    info : 'info',
+}

@@ -1,16 +1,16 @@
 import React, {useRef} from 'react';
 import {useDispatch} from "react-redux";
 import {addTask} from "../store/todoSlice";
-import {PRIORITY} from "../utils/constants"
+import {ALERT, PRIORITY} from "../utils/constants"
 
 export default function TaskForm(props){
 
 
     const priority_inputs = Object.entries(PRIORITY).map((priority) => {
 
-        let input = <div className="form-check form-check-inline">
+        let input = <div className="form-check form-check-inline" key={priority[1]}>
                         <input className="form-check-input" type="radio" name="priority" id={`inline_${priority[0]}`} value={priority[1]} />
-                        <label className="form-check-label text-capitalize" for={`inline_${priority[0]}`}>{priority[0]}</label>
+                        <label className="form-check-label text-capitalize" htmlFor={`inline_${priority[0]}`}>{priority[0]}</label>
                     </div>
 
         return input;
@@ -22,7 +22,10 @@ export default function TaskForm(props){
         e.preventDefault()
         const text = inputRef.current.value
         if (text === ""){
-            alert("Please enter a valid todo")
+            props.displayAlert(
+                ALERT.danger,
+                "Please enter a valid Task"
+            )
         }else{
             const currentDate = new Date().toLocaleDateString()
             dispatch(addTask(
@@ -38,6 +41,11 @@ export default function TaskForm(props){
             //     date: currentDate
             // })
             inputRef.current.value = ""
+
+            props.displayAlert(
+                ALERT.success,
+                "Task Created Successfully"
+            )
         }
     }
 
@@ -58,7 +66,7 @@ export default function TaskForm(props){
                 {priority_inputs}
             </div>
             <div className='d-flex flex-row mt-2'>
-                <button className="btn btn-outline-danger" type="button" id="button-addon2" >Add Todo</button>
+                <button className="btn btn-outline-danger" type="submit" id="button-addon2" >Add Todo</button>
             </div>
         </form>
     )
