@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Todo(props) {
-
+    const todo = props.todo
     return (
         <tr>
             <td>
@@ -12,12 +12,13 @@ export default function Todo(props) {
             </div>
             </td>
             <td>
-                {props.text}
+                {todo.text}
             </td>
-            <td>{props.text} Description</td>
-            <td>Medium</td>
-            <td>Boolean Status</td>
-            <td>Boolean Status</td>
+            <td>{todo.description}</td>
+            <td><span className='badge bg-warning'>{todo.priority}</span></td>
+            <td>{todo.status ? 'Complete' : 'Pending'}</td>
+            <td><button className='btn btn-sm btn-secondary'>{todo.status ? "Reopen" : "Close" }</button>
+            </td>
 
         </tr>
         // <div className="d-flex flex-row border rounded m-2 p-2 align-content-center align-items-center">

@@ -1,9 +1,9 @@
 //priority constants
 
 export const PRIORITY = {
-    medium : 0,
-    high: 1,
-    low: 2
+    medium : 'Medium',
+    high: 'High',
+    low: 'Low'
 }
 
 export const ALERT = {
