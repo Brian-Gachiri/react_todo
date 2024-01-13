@@ -1,11 +1,17 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice} from '@reduxjs/toolkit'
 
 export const todoSlice = createSlice({
     name: 'todos',
     initialState : {
-        todoList : []
+        todoList : [],
+        status: 'idle',
+        error: null
     },
     reducers: {
+        getTasks:(state,action) => {
+            state.status = 'success'
+            state.todoList = action.payload
+        },
         addTask: (state,action) => {
             const new_id = state.todoList.length + 1;
             const new_todo = {
@@ -27,10 +33,18 @@ export const todoSlice = createSlice({
         },
         markAsComplete: (state) => {
 
+        },
+        getTasksFailed: (state, action) => {
+            state.status = 'failed'
+            state.error = action.payload
+        },
+        startGetTasks: (state) => {
+            state.status = 'loading'
         }
 
     }
 })
 
-export const {addTask, removeTask, markAsComplete} = todoSlice.actions
+export const {addTask, removeTask, markAsComplete, getTasks, getTasksFailed, startGetTasks} = todoSlice.actions
+
 export default todoSlice.reducer

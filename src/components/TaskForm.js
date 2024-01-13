@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
 import {useDispatch} from "react-redux";
-import {addTask} from "../store/todoSlice";
+import {createTask} from "../store/todoActions";
 import {ALERT, PRIORITY} from "../utils/constants"
 
 export default function TaskForm(props){
@@ -38,13 +38,12 @@ export default function TaskForm(props){
                 "Please enter a valid Task"
             )
         }else{
-            const currentDate = new Date().toLocaleDateString()
-            dispatch(addTask(
+            dispatch(createTask(
                 {
                     text: formData.text,
-                    date: currentDate,
                     description: formData.description,
-                    priority: formData.priority
+                    priority: formData.priority,
+                    status: false
                 }
             ))
             //Using props and useState
@@ -82,7 +81,7 @@ export default function TaskForm(props){
             <div className="mb-3">
                 <label>Task Descriptiom</label>
                 <textarea className="form-control" placeholder="Task Description" onChange={handleChange}
-                       aria-label="Task Description" name='description' aria-describedby="button-addon2">{formData.description}</textarea>
+                       aria-label="Task Description" name='description' aria-describedby="button-addon2" value={formData.description}></textarea>
             </div>
             <div className='mb-3'>
                 <label className='mb-2'>Task Priority</label> <br/>

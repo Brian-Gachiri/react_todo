@@ -1,12 +1,26 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Todo from "./Todo";
 import {useSelector} from "react-redux";
 import emptyStateImage from "../images/empty.svg";
+import {useDispatch} from "react-redux";
+import {fetchTasks} from "../store/todoActions";
 
 export default function TodoList(){
     // const todos = props.todos //Using props and useState
+    const dispatch = useDispatch();
     const todos = useSelector((state) => state.todos.todoList)
-    const todo_list = todos.map((todo) => (<Todo todo={todo} key={todo.id}></Todo>))
+    const loading = useSelector((state) => state.todos.loading);
+    const error = useSelector((state) => state.todos.error);
+
+    useEffect(() => {
+        dispatch(fetchTasks());
+    }, [dispatch]);
+
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+
+    const todo_list = todos.map((todo) => (<Todo todo={todo} key={todo._id}></Todo>))
 
     return (
         <div className='container'>
