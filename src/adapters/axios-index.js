@@ -3,6 +3,7 @@ import Axios from "axios";
 
 // const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 const apiBaseUrl = "http://127.0.0.1:5000/api/"
+const user = localStorage.getItem('user');
 
 const defaultOptions = {
   baseURL: apiBaseUrl,
@@ -13,8 +14,8 @@ const defaultOptions = {
 
 const axiosInstance = Axios.create(defaultOptions);
 axiosInstance.interceptors.request.use(function (config) {
-//   const token = cookie.get("access_token");
-//   config.headers["authorization"] = token ? `Bearer ${token}` : "";
+  const token = user ? JSON.parse(user).token : null;
+  config.headers["authorization"] = token ? `Bearer ${token}` : "";
   config.headers["Access-Control-Allow-Origin"] = "*"
   return config;
 });

@@ -4,6 +4,7 @@ import {useSelector} from "react-redux";
 import emptyStateImage from "../images/empty.svg";
 import {useDispatch} from "react-redux";
 import {fetchTasks} from "../store/todoActions";
+import { checkLoginStatus } from '../store/userSlice';
 
 export default function TodoList(){
     // const todos = props.todos //Using props and useState
@@ -13,6 +14,7 @@ export default function TodoList(){
     const error = useSelector((state) => state.todos.error);
 
     useEffect(() => {
+        dispatch(checkLoginStatus())
         dispatch(fetchTasks());
     }, [dispatch]);
 
